@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    //PokemonList(response.pokemonEntries)
                     val navController = rememberNavController()
                     NavHost(
                         navController = navController,

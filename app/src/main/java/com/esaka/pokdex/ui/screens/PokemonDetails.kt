@@ -59,9 +59,10 @@ fun PokemonDetailScreen(
     val pokemonInfo = produceState<Resource<Pokemon>>(initialValue = Resource.Loading()) {
         value = viewModel.getPokemon(pokemonName)
     }.value
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(bottom = 16.dp)
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = 16.dp)
     ) {
         PokemonDetailTopSection(
             navController = navController,
@@ -130,12 +131,13 @@ fun PokemonDetailStateWrapper(
     modifier: Modifier = Modifier,
     loadingModifier: Modifier = Modifier
 ) {
-    when(pokemonInfo) {
+    when (pokemonInfo) {
         is Resource.Success -> {
             PokemonDetailSection(
                 pokemonInfo = pokemonInfo.data!!,
             )
         }
+
         is Resource.Error -> {
             Text(
                 text = pokemonInfo.message!!,
@@ -143,6 +145,7 @@ fun PokemonDetailStateWrapper(
                 modifier = modifier
             )
         }
+
         is Resource.Loading -> {
             CircularProgressIndicator(
                 color = MaterialTheme.colorScheme.primary,
@@ -184,7 +187,7 @@ fun PokemonTypeSection(types: List<Type>) {
         modifier = Modifier
             .padding(16.dp)
     ) {
-        for(type in types) {
+        for (type in types) {
             Box(
                 contentAlignment = Alignment.Center,
                 modifier = Modifier
@@ -219,7 +222,7 @@ fun PokemonStat(
         mutableStateOf(false)
     }
     val curPercent = animateFloatAsState(
-        targetValue = if(animationPlayed) {
+        targetValue = if (animationPlayed) {
             statValue / statMaxValue.toFloat()
         } else 0f,
         animationSpec = tween(
@@ -276,7 +279,9 @@ fun PokemonBaseStats(
         pokemonInfo.stats.maxOf { it.baseStat }
     }
     Column(
-        modifier = Modifier.fillMaxWidth()
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 5.dp)
     ) {
         Text(
             text = "Base stats:",

@@ -10,8 +10,6 @@ interface PokeApiService {
     suspend fun getPokemonList(): PokemonsListResponse
 
     @GET("pokemon/{name}")
-    suspend fun getPokemonInfo(
-        @Path("name") name: String
-    ): Pokemon
+    suspend fun getPokemonInfo(@Path("name") name: String): Pokemon
 
 }
